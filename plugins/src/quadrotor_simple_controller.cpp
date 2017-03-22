@@ -52,7 +52,7 @@ namespace gazebo {
 
 GazeboQuadrotorSimpleController::GazeboQuadrotorSimpleController()
 {
-  navi_state = 0;
+  navi_state = 3;
   
 }
 
@@ -239,9 +239,6 @@ void GazeboQuadrotorSimpleController::VelocityCallback(const geometry_msgs::Twis
   }
   time_counter_for_drift_noise += dt;
 
-  velocity_command_.linear.x *= 10;
-  velocity_command_.linear.y *= 10;
-  velocity_command_.linear.z *= 10;
   
   velocity_command_.linear.x += drift_noise[0] + 2*motion_small_noise_*(drand48()-0.5);
   velocity_command_.linear.y += drift_noise[1] + 2*motion_small_noise_*(drand48()-0.5);
@@ -348,7 +345,7 @@ void GazeboQuadrotorSimpleController::Update()
 //    ROS_DEBUG_NAMED("quadrotor_simple_controller", "Force: [%g %g %g], Torque: [%g %g %g]", force.x, force.y, force.z, torque.x, torque.y, torque.z);
 //    lastDebugOutput = last_time.Double();
 //  }
-
+  
   // process robot state information
   if(navi_state == LANDED_MODEL)
   {
@@ -417,14 +414,14 @@ void GazeboQuadrotorSimpleController::PIDController::Load(sdf::ElementPtr _sdf, 
 
   if (!_sdf) return;
   
-  /*
+  
   // _sdf->PrintDescription(_sdf->GetName());
-  if (_sdf->HasElement(prefix + "ProportionalGain")) gain_p = _sdf->GetElement(prefix + "ProportionalGain")->GetValueDouble();
-  if (_sdf->HasElement(prefix + "DifferentialGain")) gain_d = _sdf->GetElement(prefix + "DifferentialGain")->GetValueDouble();
-  if (_sdf->HasElement(prefix + "IntegralGain"))     gain_i = _sdf->GetElement(prefix + "IntegralGain")->GetValueDouble();
-  if (_sdf->HasElement(prefix + "TimeConstant"))     time_constant = _sdf->GetElement(prefix + "TimeConstant")->GetValueDouble();
-  if (_sdf->HasElement(prefix + "Limit"))            limit = _sdf->GetElement(prefix + "Limit")->GetValueDouble();
-*/
+  if (_sdf->HasElement(prefix + "ProportionalGain")) gain_p = _sdf->GetElement(prefix + "ProportionalGain")->Get<double>("");
+  if (_sdf->HasElement(prefix + "DifferentialGain")) gain_d = _sdf->GetElement(prefix + "DifferentialGain")->Get<double>("");
+  if (_sdf->HasElement(prefix + "IntegralGain"))     gain_i = _sdf->GetElement(prefix + "IntegralGain")->Get<double>("");
+  if (_sdf->HasElement(prefix + "TimeConstant"))     time_constant = _sdf->GetElement(prefix + "TimeConstant")->Get<double>("");
+  if (_sdf->HasElement(prefix + "Limit"))            limit = _sdf->GetElement(prefix + "Limit")->Get<double>("");
+
 }
 
 double GazeboQuadrotorSimpleController::PIDController::update(double new_input, double x, double dx, double dt)
