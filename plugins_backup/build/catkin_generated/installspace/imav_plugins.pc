@@ -1,0 +1,8 @@
+prefix=/usr/local
+
+Name: imav_plugins
+Description: Description of imav_plugins
+Version: 0.0.0
+Cflags: -I/usr/local/include
+Libs: -L/usr/local/lib -lreset_plugin -lhector_gazebo_ros_imu -lhector_gazebo_ros_magnetic -lhector_gazebo_ros_gps -lhector_gazebo_ros_sonar -lhector_gazebo_ros_baro -lhector_gazebo_quadrotor_simple_controller
+Requires: image_transport

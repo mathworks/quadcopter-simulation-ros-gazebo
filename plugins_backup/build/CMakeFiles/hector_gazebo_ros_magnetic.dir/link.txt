@@ -1,0 +1,1 @@
+/usr/bin/c++  -fPIC    -shared -Wl,-soname,libhector_gazebo_ros_magnetic.so -o devel/lib/libhector_gazebo_ros_magnetic.so CMakeFiles/hector_gazebo_ros_magnetic.dir/src/gazebo_ros_magnetic.cpp.o  -L/usr/lib/x86_64-linux-gnu/gazebo-7/plugins  -L/usr/include/sdformat-4.0  -L/usr/include/ignition/math2  -L/usr/include 
