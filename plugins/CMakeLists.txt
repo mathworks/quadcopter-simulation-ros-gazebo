@@ -36,7 +36,28 @@ link_directories(
 
 list(APPEND CMAKE_CXX_FLAGS "${GAZEBO_CXX_FLAGS}")
 
-set(PLUGIN_NAME plugin_1)
+set(PLUGIN_NAME quadrotor_simple_controller)
+add_library(${PLUGIN_NAME} SHARED src/${PLUGIN_NAME}.cpp)
+#target_link_libraries(${PLUGIN_NAME} ${GAZEBO_LIBRARIES} ${roscpp_LIBRARIES} ${SDFormat_LIBRARIES} ${Boost_LIBRARIES})
 
-add_library(${PLUGIN_NAME} SHARED ${SOURCES})
-target_link_libraries(${PLUGIN_NAME} ${GAZEBO_LIBRARIES} ${roscpp_LIBRARIES} ${SDFormat_LIBRARIES} ${Boost_LIBRARIES})
+
+set(PLUGIN_NAME quadrotor_state_controller)
+add_library(${PLUGIN_NAME} SHARED src/${PLUGIN_NAME}.cpp)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
