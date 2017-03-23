@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<sdf version='1.6'>
+  
+  
+  <world name="imav_world" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  
+  
+    <xacro:property name="width" value="13" />
+    <xacro:property name="length1" value="30" />
+    <xacro:property name="length2" value="30" />
+    <xacro:property name="length3" value="30" />
+
+    <xacro:include filename="$(find imav_2017)/worlds/xacro/macros.urdf.xacro" />
+
+    
+    <xacro:light_source/>
+    <xacro:phys/>
+    <xacro:gui_/>
+    <xacro:scn amb="0.4 0.4 0.4 1" backg="0.7 0.7 0.7 1"/>
+    
+    <xacro:zone name="takoff_landing" 	offset="0"	 				width="${width}" length="${length1}" color="${22/255}  ${176/255} ${37/255}"/>
+    <xacro:zone name="obstacle" 	offset="${length1/2+length2/2}" 		width="${width}" length="${length2}" color="${188/255} ${53/255}  ${53/255}"/>
+    <xacro:zone name="target" 		offset="${length1/2+length2+length3/2}" 	width="${width}" length="${length3}" color="${78/255}  ${83/255}  ${199/255}"/>
+    
+    <xacro:wall_obstacle w_s="0.5" w_b="1" w_t="0.5" offset="${length1/4}" width="${width}" height="3"/>
+    
+    <xacro:wall_brand w="${length1+length2+length3}" h="${3*3}"	l="0.2" x="${length1/2+length2/2}" y="${width*2}"	z="${3*3/2}"/>
+    
+    <xacro:poles h="3" r="0.25" w="${width}" l="${length2}" x="${length1/2+length2/2}" y="0"/>
+    
+    
+  </world>
+</sdf>

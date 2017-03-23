@@ -1,0 +1,266 @@
+<?xml version="1.0"?>
+
+
+<my_macros xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:macro name="zone" params="name offset width length color">
+    <model name="${name}_zone">
+      <static>1</static>
+      <pose>${offset} 0 0 0 0 0</pose>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>${length} ${width}</size>
+            </plane>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>100</mu>
+                <mu2>50</mu2>
+              </ode>
+            </friction>
+            <bounce/>
+            <contact>
+              <ode/>
+            </contact>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='visual'>
+          <cast_shadows>0</cast_shadows>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>${length} ${width}</size>
+            </plane>
+          </geometry>
+          <material>
+	    <ambient>${color} 0.5</ambient>
+          </material>
+        </visual>
+        <velocity_decay>
+          <linear>0</linear>
+          <angular>0</angular>
+        </velocity_decay>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <gravity>1</gravity>
+      </link>
+    </model>
+  </xacro:macro>
+
+  <xacro:macro name="light_source">
+    
+    <light name="sun" type="directional">
+      <cast_shadows>1</cast_shadows>
+      <pose>0 0 10 0 -0 0</pose>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <attenuation>
+        <range>1000</range>
+        <constant>0.9</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <direction>-0.5 0.1 -0.9</direction>
+    </light>
+    
+  </xacro:macro>
+
+  <xacro:macro name="phys">    
+    <physics type='ode'>
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1</real_time_factor>
+      <real_time_update_rate>1000</real_time_update_rate>
+    </physics>
+    <gravity>0 0 -9.8</gravity>
+  </xacro:macro>
+
+  <xacro:macro name="scn" params="amb backg"> 
+    <scene>
+      <ambient>${amb}</ambient>
+      <background>${backg}</background>
+      <sky>
+	<clouds>
+	  <speed>12</speed>
+	</clouds>
+      </sky>
+      <shadows>1</shadows>
+      <grid>0</grid>
+    </scene>  
+  </xacro:macro>
+  
+  <xacro:macro name="gui_">
+    <gui fullscreen='0'>
+      <camera name='user_camera'>
+	<pose>1.49016 -3.72367 3.62379 -2.88294e-17 0.273797 1.4042</pose>
+	<view_controller>orbit</view_controller>
+      </camera>
+    </gui>
+  </xacro:macro>
+
+  <xacro:macro name="wall_part" params="id w h l x y z">
+      
+      <collision name="wall_p${id}_collision">
+	<pose>${x} ${y} ${z} 0 0 0</pose> 
+	<geometry>
+	  <box>
+	    <size>${w} ${l} ${h}</size>
+	  </box>
+	</geometry>
+	<surface>
+	  <contact>
+	    <collide_bitmask>0x02</collide_bitmask>
+	  </contact>
+	</surface>
+      </collision>
+      <visual name="wall_p${id}_visual">
+	<pose>${x} ${y} ${z} 0 0 0</pose> 
+	<geometry>
+	  <box>
+	    <size>${w} ${l} ${h}</size>
+	  </box>
+	</geometry>
+	<material>
+	  <script>
+	    <name>Gazebo/Wood</name>
+	  </script>
+	</material>
+      </visual>
+    
+  </xacro:macro>
+
+  <xacro:macro name="wall_brand" params="w h l x y z">
+    <model name="branded_wall">
+      <static>true</static>
+      <pose>${x} ${y} ${z} 0 0 0</pose> 
+      <link name="wall_link">
+	<inertial>
+	  <mass>10000</mass>
+	</inertial>
+	  
+	<collision name="wall_brand_collision">	  
+	  <geometry>
+	    <box>
+	      <size>${w} ${l} ${h}</size>
+	    </box>
+	  </geometry>
+	  <surface>
+	    <contact>
+	      <collide_bitmask>0x02</collide_bitmask>
+	    </contact>
+	  </surface>
+	</collision>
+	<visual name="wall_brand_visual">
+	  <geometry>
+	    <box>
+	      <size>${w} ${l} ${h}</size>
+	    </box>
+	  </geometry>
+	  <material>
+	    <script>
+	      <uri>file://$(find imav_2017)/worlds/xacro/custom.material</uri>
+	      <name>MathWorks_branding</name>
+	    </script>
+	  </material>
+	</visual>
+      </link>
+    </model>
+    
+  </xacro:macro>
+
+  <xacro:macro name="wall_obstacle" params="w_s w_b w_t offset width height">
+    
+    <model name="wall">
+      <static>1</static>
+      <pose>${offset} 0 ${height/2} 0 0 0</pose>
+      
+      <link name="wall_link">
+	
+	<inertial>
+	  <mass>10000</mass>
+	</inertial>
+      
+	<xacro:wall_part id="1"  w="0.2" h="${height}" l="2" x="0" y="${w_b/2+1}" z="0"/>
+	<xacro:wall_part id="2"  w="0.2" h="${height}" l="2" x="0" y="${w_b/2+2+1.5}" z="0"/>
+	<xacro:wall_part id="3"  w="0.2" h="${height}" l="2" x="0" y="${-(w_b/2+1)}" z="0"/>
+	<xacro:wall_part id="4"  w="0.2" h="${height}" l="2" x="0" y="${-(w_b/2+2+1.5)}" z="0"/>
+	
+	<xacro:wall_part id="5"  w="0.2" h="1"	l="1"   x="0" y="0" 		z="-1.00"/>
+	<xacro:wall_part id="6"  w="0.2" h="1.5"	l="0.5" x="0" y="${0.75+2}"	z="-0.75"/>
+	<xacro:wall_part id="7"  w="0.2" h="1.5"	l="0.5" x="0" y="${-(0.75+2)}"	z="-0.75"/>
+	
+	<xacro:wall_part id="8"  w="0.2" h="1"	l="1"   x="0" y="0" 		z="1.00"/>
+	<xacro:wall_part id="9"  w="0.2" h="1"	l="0.5" x="0" y="${0.75+2}"	z="1"/>
+	<xacro:wall_part id="10" w="0.2" h="1"	l="0.5" x="0" y="${-(0.75+2)}"	z="1"/>
+      </link>
+    </model>
+    
+  </xacro:macro>
+
+  
+  <xacro:macro name="pole" params="id h r x y z">
+  
+      <collision name="pole_p${id}_collision">
+	<pose>${x} ${y} ${z} 0 0 0</pose> 
+	<geometry>
+	  <cylinder>
+	    <radius>${r}</radius>
+	    <length>${h}</length>
+	  </cylinder>
+	</geometry>
+	<surface>
+	  <contact>
+	    <collide_bitmask>0x02</collide_bitmask>
+	  </contact>
+	</surface>
+      </collision>
+      <visual name="pole_p${id}_visual">
+	<pose>${x} ${y} ${z} 0 0 0</pose> 
+	<geometry>
+	  <cylinder>
+	    <radius>${r}</radius>
+	    <length>${h}</length>
+	  </cylinder>
+	</geometry>
+	<material>
+	  <script>
+	    <name>Gazebo/Bricks</name>
+	  </script>
+	</material>
+      </visual>
+    
+  </xacro:macro>
+  
+  <xacro:macro name="poles" params="h r w l x y">
+    <model name="poles">
+      <static>1</static>
+      <pose>${x} ${y} ${h/2} 0 0 0</pose>
+      
+      <link name="poles_link">
+	
+	<inertial>
+	  <mass>10000</mass>
+	</inertial>
+      
+	<xacro:pole id="1" h="${h}" r="${r}" x="0" 		y="${w/4}" z="0"/>
+	<xacro:pole id="2" h="${h}" r="${r}" x="${ 2*l/6}" 	y="${w/4}" z="0"/>
+	<xacro:pole id="3" h="${h}" r="${r}" x="${-2*l/6}" 	y="${w/4}" z="0"/>
+	
+	<xacro:pole id="4" h="${h}" r="${r}" x="${ l/6}" 	y="0" z="0"/>
+	<xacro:pole id="5" h="${h}" r="${r}" x="${-l/6}" 	y="0" z="0"/>
+	
+	<xacro:pole id="6" h="${h}" r="${r}" x="0"	 	y="${-w/4}" z="0"/>
+	<xacro:pole id="7" h="${h}" r="${r}" x="${ 2*l/6}" 	y="${-w/4}" z="0"/>
+	<xacro:pole id="8" h="${h}" r="${r}" x="${-2*l/6}" 	y="${-w/4}" z="0"/>
+	
+      </link>
+    </model>  
+    
+  </xacro:macro>
+  
+</my_macros>
+ 

@@ -1,0 +1,37 @@
+material MathWorks_branding
+{
+  technique
+  {
+    pass
+    {
+      ambient 1.0 1.0 1.0 0.0
+      diffuse 1.0 1.0 1.0 1.0
+      specular 0.0 0.0 0.0 1.0 0.5
+
+      texture_unit
+      {
+	texture mathworks_logo2.jpg
+	filtering trilinear
+      }
+    }
+  }
+}
+
+material MathWorks_branding_transp
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.5 0.5 0.5 1.0
+      diffuse 1.0 1.0 1.0 1.0
+      specular 0.0 0.0 0.0 1.0 0.5
+
+      texture_unit
+      {
+	texture mathworks_logo1.png
+	filtering trilinear
+      }
+    }
+  }
+}
