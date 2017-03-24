@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<robot name="quadrotor_hokuyo_utm30lx" xmlns:xacro="http://www.ros.org/wiki/xacro">
+<robot name="quadrotor_hokuyo_utm30lx" xmlns:xacro="http://wiki.ros.org/xacro" >
    
     <xacro:property name="M_PI" value="3.1415926535897931" />
     

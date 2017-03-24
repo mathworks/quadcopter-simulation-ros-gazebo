@@ -1,6 +1,8 @@
 <?xml version="1.0"?>
 
-<robot xmlns:xacro="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface">
+<robot xmlns:xacro="http://wiki.ros.org/xacro" >
+  
+  
   <xacro:include filename="$(find imav_2017)/plugins/urdf/quadrotor_sensors.urdf.xacro" />
   <xacro:include filename="$(find imav_2017)/plugins/urdf/quadrotor_simple_controller.urdf.xacro" />
 

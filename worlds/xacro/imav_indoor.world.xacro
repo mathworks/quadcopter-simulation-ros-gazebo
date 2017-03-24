@@ -29,7 +29,7 @@
     
     <xacro:wall_brand w="${length1+length2+length3}" h="${3*3}"	l="0.2" x="${length1/2+length2/2}" y="${width*2}"	z="${3*3/2}"/>
     
-    <xacro:poles2 h="3" r="0.25" w="${width}" l="${length2/2}" x="${length1/2+length2/4}" y="0"/>
+    <xacro:poles2 h="3" r="0.25" w="${width}" l="${length2}" x="${length1/2+length2/2}" y="0" num="50"/>
     
     <!--
     <xacro:trees w="${width}" l="${length2/2}" x="${length1/2+3*length2/4}" y="0"/>

@@ -200,8 +200,7 @@
     </model>
     
   </xacro:macro>
-
-  
+ 
   <xacro:macro name="pole" params="id h r x y z">
   
       <collision name="pole_p${id}_collision">
@@ -234,8 +233,7 @@
       </visual>
     
   </xacro:macro>
-  
-  
+   
   <xacro:macro name="pole2" params="h r">
     <static>true</static>
     <link name="pole_link">
@@ -270,8 +268,7 @@
     </link>
   </xacro:macro>
   
-  <xacro:macro name="poles2" params="h r w l x y">
-    
+  <xacro:macro name="poles2" params="h r w l x y num">
     <population name="pole_population">
       <model name="pole">
 	<xacro:pole2 h="${h}" r="${r}"/>
@@ -281,12 +278,11 @@
       <box>
         <size>${l} ${w} 0.1</size>
       </box>
-      <model_count>20</model_count>
+      <model_count>${num}</model_count>
       <distribution>
-        <type>uniform</type>
+        <type>random</type>
       </distribution>
     </population>
-      
   </xacro:macro>
   
   <xacro:macro name="poles" params="h r w l x y">
@@ -319,7 +315,6 @@
 
   </xacro:macro>
   
-
   <xacro:macro name="trees" params="w l x y">
     
     <population name="pole_population">
@@ -342,7 +337,6 @@
       
   </xacro:macro>
   
-  
   <xacro:macro name="bushes" params="w l x y">
     
     <population name="pole_population">
@@ -364,8 +358,7 @@
     </population>
       
   </xacro:macro>
-  
-  
+   
   <xacro:macro name="helipad" params="size x y z">
       
       <link name="helipad_link">
@@ -402,7 +395,6 @@
       </link>
   </xacro:macro>
   
-
   <xacro:macro name="helipad_static" params="size x y z">
     <model name="helipad_static">
       <static>true</static>
