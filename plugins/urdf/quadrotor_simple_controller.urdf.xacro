@@ -25,10 +25,10 @@ xmlns:xacro="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface"
         <yawLimit>1.5</yawLimit>
         <velocityXYProportionalGain>5.0</velocityXYProportionalGain>
         <velocityXYDifferentialGain>1.0</velocityXYDifferentialGain>
-        <velocityXYLimit>2</velocityXYLimit>
+        <velocityXYLimit>10</velocityXYLimit>
         <velocityZProportionalGain>5.0</velocityZProportionalGain>
         <velocityZDifferentialGain>1.0</velocityZDifferentialGain>
-        <velocityZLimit>0.5</velocityZLimit>
+        <velocityZLimit>2.5</velocityZLimit>
         <maxForce>30</maxForce>
         <motionSmallNoise>0.05</motionSmallNoise>
         <motionDriftNoise>0.03</motionDriftNoise>
