@@ -201,6 +201,28 @@
     
   </xacro:macro>
  
+  <xacro:macro name="box_" params="name x y z size">
+    <link name='${name}'>
+      <pose>${x} ${y} ${z} 0 0 0</pose>
+
+      <collision name='collision'>
+	<geometry>
+	  <box>
+	    <size>${size}</size>
+	  </box>
+	</geometry>
+      </collision>
+
+      <visual name='visual'>
+	<geometry>
+	  <box>
+	    <size>${size}</size>
+	  </box>
+	</geometry>
+      </visual>
+    </link>
+  </xacro:macro>
+  
   <xacro:macro name="pole" params="id h r x y z">
   
       <collision name="pole_p${id}_collision">
@@ -280,7 +302,7 @@
       </box>
       <model_count>${num}</model_count>
       <distribution>
-        <type>random</type>
+        <type>uniform</type>
       </distribution>
     </population>
   </xacro:macro>
@@ -398,18 +420,31 @@
   <xacro:macro name="helipad_static" params="size x y z">
     <model name="helipad_static">
       <static>true</static>
-      <xacro:helipad size="${size}" x="${x+1}" y="${y}" z="${z}"/>
+      <xacro:helipad size="${size}" x="${x}" y="${y}" z="${z}"/>
     </model>
   </xacro:macro>
   
   <xacro:macro name="helipad_mobile" params="size x y z r v">    
     
     <model name="helipad_mobile">
+      
       <pose>${x} ${y} ${z} 0 0 0</pose>
+      
+      <self_collide>false</self_collide>
+      
+      
+      <joint name="helipad_fix0" type="fixed">
+	  <pose>0 0 0 0 0 0</pose>
+	  <parent>world</parent>
+	  <child>base</child>
+      </joint>
+	
+      <xacro:box_ name='base' size="0.2 0.2 0.2" x="0" y="0" z="0"/>
+      
       <joint name="helipad_joint" type="revolute">
-	<pose>${x} ${y} ${z} 0 0 0</pose>
-	<parent>world</parent>
-	<child>helipad_link</child>
+	<pose>-${r/2} 0 0 0 0 0</pose>
+	<parent>base</parent>
+	<child>arm</child>
 	<axis>
 	  <xyz>0 0 1</xyz>
 	</axis>
@@ -423,7 +458,16 @@
 	
       </joint>
       
-      <xacro:helipad size="${size}" x="${1}" y="0" z="0"/>
+      <xacro:box_ name='arm' size="${r} 0.2 0.01" x="${r/2}" y="0" z="0.095"/>
+      
+      
+      <joint name="helipad_fix1" type="fixed">
+	<pose>0 0 0 0 0 0</pose>
+	<parent>arm</parent>
+	<child>helipad_link</child>
+      </joint>
+	
+      <xacro:helipad size="${size}" x="${r}" y="0" z="0.1"/>
       
     </model>
   </xacro:macro>

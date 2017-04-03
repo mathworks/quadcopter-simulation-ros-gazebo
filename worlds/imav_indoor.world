@@ -49,7 +49,7 @@
           <geometry>
             <plane>
               <normal>0 0 1</normal>
-              <size>30 13</size>
+              <size>10 13</size>
             </plane>
           </geometry>
           <surface>
@@ -71,7 +71,7 @@
           <geometry>
             <plane>
               <normal>0 0 1</normal>
-              <size>30 13</size>
+              <size>10 13</size>
             </plane>
           </geometry>
           <material>
@@ -89,13 +89,13 @@
     </model>
     <model name="obstacle_zone">
       <static>1</static>
-      <pose>30.0 0 0 0 0 0</pose>
+      <pose>10.0 0 0 0 0 0</pose>
       <link name="link">
         <collision name="collision">
           <geometry>
             <plane>
               <normal>0 0 1</normal>
-              <size>30 13</size>
+              <size>10 13</size>
             </plane>
           </geometry>
           <surface>
@@ -117,7 +117,7 @@
           <geometry>
             <plane>
               <normal>0 0 1</normal>
-              <size>30 13</size>
+              <size>10 13</size>
             </plane>
           </geometry>
           <material>
@@ -135,13 +135,13 @@
     </model>
     <model name="target_zone">
       <static>1</static>
-      <pose>60.0 0 0 0 0 0</pose>
+      <pose>21.5 0 0 0 0 0</pose>
       <link name="link">
         <collision name="collision">
           <geometry>
             <plane>
               <normal>0 0 1</normal>
-              <size>30 13</size>
+              <size>13 13</size>
             </plane>
           </geometry>
           <surface>
@@ -163,7 +163,7 @@
           <geometry>
             <plane>
               <normal>0 0 1</normal>
-              <size>30 13</size>
+              <size>13 13</size>
             </plane>
           </geometry>
           <material>
@@ -181,7 +181,7 @@
     </model>
     <model name="wall">
       <static>1</static>
-      <pose>7.5 0 1.5 0 0 0</pose>
+      <pose>2.5 0 1.5 0 0 0</pose>
       <link name="wall_link">
         <inertial>
           <mass>10000</mass>
@@ -450,7 +450,7 @@
     </model>
     <model name="branded_wall">
       <static>true</static>
-      <pose>30.0 26 4.5 0 0 0</pose>
+      <pose>10.0 26 4.5 0 0 0</pose>
       <link name="wall_link">
         <inertial>
           <mass>10000</mass>
@@ -458,7 +458,7 @@
         <collision name="wall_brand_collision">
           <geometry>
             <box>
-              <size>90 0.2 9</size>
+              <size>33 0.2 9</size>
             </box>
           </geometry>
           <surface>
@@ -470,12 +470,12 @@
         <visual name="wall_brand_visual">
           <geometry>
             <box>
-              <size>90 0.2 9</size>
+              <size>33 0.2 9</size>
             </box>
           </geometry>
           <material>
             <script>
-              <uri>file:///home/vince/catkin_ws/src/imav_2017/worlds/xacro/custom.material</uri>
+              <uri>file:///home/vjankovi/catkin_ws/src/IMAV_2017_Virtual_Challenge/worlds/xacro/custom.material</uri>
               <name>MathWorks_branding</name>
             </script>
           </material>
@@ -514,13 +514,13 @@
           </visual>
         </link>
       </model>
-      <pose>30.0 0 1.5 0 0 0</pose>
+      <pose>10.0 1.625 1.5 0 0 0</pose>
       <box>
-        <size>30 13 0.1</size>
+        <size>10 9.75 0.1</size>
       </box>
-      <model_count>50</model_count>
+      <model_count>20</model_count>
       <distribution>
-        <type>random</type>
+        <type>uniform</type>
       </distribution>
     </population>
     <!--
@@ -530,14 +530,14 @@
     <model name="helipad_static">
       <static>true</static>
       <link name="helipad_link">
-        <pose>2 1 0.1 0 0 0</pose>
+        <pose>-2.5 2.5 0.1 0 0 0</pose>
         <inertial>
           <mass>10</mass>
         </inertial>
         <collision name="wall_brand_collision">
           <geometry>
             <box>
-              <size>0.5 0.5 0.01</size>
+              <size>1 1 0.01</size>
             </box>
           </geometry>
           <surface>
@@ -549,12 +549,12 @@
         <visual name="helipad_visual">
           <geometry>
             <box>
-              <size>0.5 0.5 0.01</size>
+              <size>1 1 0.01</size>
             </box>
           </geometry>
           <material>
             <script>
-              <uri>file:///home/vince/catkin_ws/src/imav_2017/worlds/xacro/custom.material</uri>
+              <uri>file:///home/vjankovi/catkin_ws/src/IMAV_2017_Virtual_Challenge/worlds/xacro/custom.material</uri>
               <name>Helipad</name>
             </script>
           </material>
@@ -562,11 +562,34 @@
       </link>
     </model>
     <model name="helipad_mobile">
-      <pose>-1 -1 0.1 0 0 0</pose>
-      <joint name="helipad_joint" type="revolute">
-        <pose>-1 -1 0.1 0 0 0</pose>
+      <pose>-2.5 -2.5 0.1 0 0 0</pose>
+      <self_collide>false</self_collide>
+      <joint name="helipad_fix0" type="fixed">
+        <pose>0 0 0 0 0 0</pose>
         <parent>world</parent>
-        <child>helipad_link</child>
+        <child>base</child>
+      </joint>
+      <link name="base">
+        <pose>0 0 0 0 0 0</pose>
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.2 0.2 0.2</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.2 0.2 0.2</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+      <joint name="helipad_joint" type="revolute">
+        <pose>-0.5 0 0 0 0 0</pose>
+        <parent>base</parent>
+        <child>arm</child>
         <axis>
           <xyz>0 0 1</xyz>
         </axis>
@@ -577,15 +600,37 @@
           </ode>
         </physics>
       </joint>
+      <link name="arm">
+        <pose>0.5 0 0.095 0 0 0</pose>
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>1 0.2 0.01</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1 0.2 0.01</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+      <joint name="helipad_fix1" type="fixed">
+        <pose>0 0 0 0 0 0</pose>
+        <parent>arm</parent>
+        <child>helipad_link</child>
+      </joint>
       <link name="helipad_link">
-        <pose>1 0 0 0 0 0</pose>
+        <pose>1 0 0.1 0 0 0</pose>
         <inertial>
           <mass>10</mass>
         </inertial>
         <collision name="wall_brand_collision">
           <geometry>
             <box>
-              <size>0.5 0.5 0.01</size>
+              <size>1 1 0.01</size>
             </box>
           </geometry>
           <surface>
@@ -597,12 +642,12 @@
         <visual name="helipad_visual">
           <geometry>
             <box>
-              <size>0.5 0.5 0.01</size>
+              <size>1 1 0.01</size>
             </box>
           </geometry>
           <material>
             <script>
-              <uri>file:///home/vince/catkin_ws/src/imav_2017/worlds/xacro/custom.material</uri>
+              <uri>file:///home/vjankovi/catkin_ws/src/IMAV_2017_Virtual_Challenge/worlds/xacro/custom.material</uri>
               <name>Helipad</name>
             </script>
           </material>

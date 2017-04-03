@@ -6,9 +6,9 @@
   
   
     <xacro:property name="width" value="13" />
-    <xacro:property name="length1" value="30" />
-    <xacro:property name="length2" value="30" />
-    <xacro:property name="length3" value="30" />
+    <xacro:property name="length1" value="10" />
+    <xacro:property name="length2" value="10" />
+    <xacro:property name="length3" value="13" />
 
     <xacro:include filename="$(find imav_2017)/worlds/xacro/macros.urdf.xacro" />
 
@@ -29,15 +29,15 @@
     
     <xacro:wall_brand w="${length1+length2+length3}" h="${3*3}"	l="0.2" x="${length1/2+length2/2}" y="${width*2}"	z="${3*3/2}"/>
     
-    <xacro:poles2 h="3" r="0.25" w="${width}" l="${length2}" x="${length1/2+length2/2}" y="0" num="50"/>
+    <xacro:poles2 h="3" r="0.25" w="${width*3/4}" l="${length2}" x="${length1/2+length2/2}" y="${width/8}" num="20"/>
     
     <!--
     <xacro:trees w="${width}" l="${length2/2}" x="${length1/2+3*length2/4}" y="0"/>
     <xacro:bushes w="${width}" l="${length2/2}" x="${length1/2+3*length2/4}" y="0"/>
     -->
     
-    <xacro:helipad_static size="0.5 0.5 0.01" x="1"  y="1"  z="0.1"/>
-    <xacro:helipad_mobile size="0.5 0.5 0.01" x="-1" y="-1" z="0.1" r="1" v="1"/>
+    <xacro:helipad_static size="1 1 0.01" x="-2.5"  y="2.5"  z="0.1"/>
+    <xacro:helipad_mobile size="1 1 0.01" x="-2.5" y="-2.5" z="0.1" r="1" v="1"/>
     
   </world>
 </sdf>
