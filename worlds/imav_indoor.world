@@ -43,7 +43,7 @@
     </scene>
     <model name="takoff_landing_zone">
       <static>1</static>
-      <pose>0 0 0 0 0 0</pose>
+      <pose>0 0.0 0 0 0 0</pose>
       <link name="link">
         <collision name="collision">
           <geometry>
@@ -89,7 +89,7 @@
     </model>
     <model name="obstacle_zone">
       <static>1</static>
-      <pose>10.0 0 0 0 0 0</pose>
+      <pose>10.0 0.0 0 0 0 0</pose>
       <link name="link">
         <collision name="collision">
           <geometry>
@@ -135,7 +135,7 @@
     </model>
     <model name="target_zone">
       <static>1</static>
-      <pose>21.5 0 0 0 0 0</pose>
+      <pose>21.5 0.0 0 0 0 0</pose>
       <link name="link">
         <collision name="collision">
           <geometry>
@@ -782,6 +782,77 @@
         </visual>
       </link>
     </model>
+    <model name="QR">
+      <static>true</static>
+      <link name="QR1_link">
+        <pose>21.5 3.25 0.1 0 0 0</pose>
+        <inertial>
+          <mass>10</mass>
+        </inertial>
+        <collision name="qr_collision">
+          <geometry>
+            <box>
+              <size>0.5 0.5 0.01</size>
+            </box>
+          </geometry>
+          <surface>
+            <contact>
+              <collide_bitmask>0x02</collide_bitmask>
+            </contact>
+          </surface>
+        </collision>
+        <visual name="qr_visual">
+          <geometry>
+            <box>
+              <size>0.5 0.5 0.01</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>file:///home/vjankovi/catkin_ws/src/IMAV_2017_Virtual_Challenge/worlds/xacro/custom.material</uri>
+              <name>QR1</name>
+            </script>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="X">
+      <static>true</static>
+      <link name="X_link">
+        <pose>21.5 -3.25 0.1 0 0 0</pose>
+        <inertial>
+          <mass>10</mass>
+        </inertial>
+        <collision name="x_collision">
+          <geometry>
+            <box>
+              <size>2 2 0.01</size>
+            </box>
+          </geometry>
+          <surface>
+            <contact>
+              <collide_bitmask>0x02</collide_bitmask>
+            </contact>
+          </surface>
+        </collision>
+        <visual name="x_visual">
+          <geometry>
+            <box>
+              <size>2 2 0.01</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>file:///home/vjankovi/catkin_ws/src/IMAV_2017_Virtual_Challenge/worlds/xacro/custom.material</uri>
+              <name>X1</name>
+            </script>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <!--
+    <xacro:zone name="drop" 	x="${length1/2+length2+length3/2}" 	y="${-width/4}" width="2" length="2" color="${255/255}  ${0/255}  ${199/255}"/>
+    -->
   </world>
 </sdf>
 
