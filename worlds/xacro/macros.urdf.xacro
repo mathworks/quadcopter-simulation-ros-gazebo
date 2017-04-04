@@ -307,7 +307,7 @@
       </box>
       <model_count>${num}</model_count>
       <distribution>
-        <type>uniform</type>
+        <type>random</type>
       </distribution>
     </population>
   </xacro:macro>
@@ -342,23 +342,32 @@
 
   </xacro:macro>
   
-  <xacro:macro name="trees" params="w l x y">
+  <xacro:macro name="trees" params="w l x y num">
     
-    <population name="pole_population">
-      <model name="pole">
-	<include>
-          <static>true</static>
-          <uri>model://meshes/tree.dae</uri>
-        </include>
+    <population name="tree_population">
+      <model name="tree">
+	
+	<static>true</static>
+	<link name="body">
+	  <visual name="visual">
+	    <pose>0 0 0 1.5708 0 0</pose>
+	    <geometry>
+	      <mesh>
+		<uri>file://$(find imav_2017)/worlds/xacro/tree1.dae</uri>
+		<scale>0.01 0.01 0.01</scale>
+	      </mesh>
+	    </geometry>
+	  </visual>
+	</link>
       </model>
       
-      <pose>${x} ${y} 0 0 0</pose>
+      <pose>${x} ${y} 0 0 0 0</pose>
       <box>
         <size>${l} ${w} 0.1</size>
       </box>
-      <model_count>10</model_count>
+      <model_count>${num}</model_count>
       <distribution>
-        <type>uniform</type>
+        <type>random</type>
       </distribution>
     </population>
       

@@ -618,13 +618,37 @@
           </visual>
         </link>
       </model>
-      <pose>10.0 1.625 1.5 0 0 0</pose>
+      <pose>7.5 1.625 1.5 0 0 0</pose>
       <box>
-        <size>10 9.75 0.1</size>
+        <size>5.0 9.75 0.1</size>
       </box>
-      <model_count>20</model_count>
+      <model_count>10</model_count>
       <distribution>
-        <type>uniform</type>
+        <type>random</type>
+      </distribution>
+    </population>
+    <population name="tree_population">
+      <model name="tree">
+        <static>true</static>
+        <link name="body">
+          <visual name="visual">
+            <pose>0 0 0 1.5708 0 0</pose>
+            <geometry>
+              <mesh>
+                <uri>file:///home/vjankovi/catkin_ws/src/IMAV_2017_Virtual_Challenge/worlds/xacro/tree1.dae</uri>
+                <scale>0.01 0.01 0.01</scale>
+              </mesh>
+            </geometry>
+          </visual>
+        </link>
+      </model>
+      <pose>12.5 1.625 0 0 0 0</pose>
+      <box>
+        <size>5.0 9.75 0.1</size>
+      </box>
+      <model_count>10</model_count>
+      <distribution>
+        <type>random</type>
       </distribution>
     </population>
     <!--
