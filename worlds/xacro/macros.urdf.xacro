@@ -172,7 +172,7 @@
     
   </xacro:macro>
 
-  <xacro:macro name="wall_obstacle" params="w_s w_b w_t offset width height">
+  <xacro:macro name="wall_obstacle" params="w_s w_b w_t l_p offset width height">
     
     <model name="wall">
       <static>1</static>
@@ -184,18 +184,23 @@
 	  <mass>10000</mass>
 	</inertial>
       
-	<xacro:wall_part id="1"  w="0.2" h="${height}" l="2" x="0" y="${w_b/2+1}" z="0"/>
-	<xacro:wall_part id="2"  w="0.2" h="${height}" l="2" x="0" y="${w_b/2+2+1.5}" z="0"/>
-	<xacro:wall_part id="3"  w="0.2" h="${height}" l="2" x="0" y="${-(w_b/2+1)}" z="0"/>
-	<xacro:wall_part id="4"  w="0.2" h="${height}" l="2" x="0" y="${-(w_b/2+2+1.5)}" z="0"/>
+	<xacro:wall_part id="1"  w="0.2" h="${height}" 		l="${(5-w_b)/2}" 	x="0" y="${ (w_b/2+(5-w_b)/4)}"	z="0"/>
+	<xacro:wall_part id="2"  w="0.2" h="${height}" 		l="2" 			x="0" y="${ (2.5+w_s+1)}" 	z="0"/>
+	<xacro:wall_part id="3"  w="0.2" h="${height}" 		l="${(5-w_b)/2}" 	x="0" y="${-(w_b/2+(5-w_b)/4)}"	z="0"/>
+	<xacro:wall_part id="4"  w="0.2" h="${height}" 		l="2" 			x="0" y="${-(2.5+w_s+1)}" 	z="0"/>
 	
-	<xacro:wall_part id="5"  w="0.2" h="1"	l="1"   x="0" y="0" 		z="-1.00"/>
-	<xacro:wall_part id="6"  w="0.2" h="1.5"	l="0.5" x="0" y="${0.75+2}"	z="-0.75"/>
-	<xacro:wall_part id="7"  w="0.2" h="1.5"	l="0.5" x="0" y="${-(0.75+2)}"	z="-0.75"/>
+	<xacro:wall_part id="5"  w="0.2" h="${(height-w_b)/2}"	l="${w_b}"   		x="0" y="0" 			z="${-((height-w_b)/4+w_b/2)}"/>
+	<xacro:wall_part id="6"  w="0.2" h="${(height-w_s)/2}"	l="${w_s}" 		x="0" y="${ (2.5+w_s/2)}"	z="${-((height-w_s)/4+w_s/2)}"/>
+	<xacro:wall_part id="7"  w="0.2" h="${(height-w_s)/2}"	l="${w_s}" 		x="0" y="${-(2.5+w_s/2)}"	z="${-((height-w_s)/4+w_s/2)}"/>
 	
-	<xacro:wall_part id="8"  w="0.2" h="1"	l="1"   x="0" y="0" 		z="1.00"/>
-	<xacro:wall_part id="9"  w="0.2" h="1"	l="0.5" x="0" y="${0.75+2}"	z="1"/>
-	<xacro:wall_part id="10" w="0.2" h="1"	l="0.5" x="0" y="${-(0.75+2)}"	z="1"/>
+	<xacro:wall_part id="8"  w="0.2" h="${(height-w_b)/2}"	l="${w_b}"   		x="0" y="0" 			z="${ ((height-w_b)/4+w_b/2)}"/>
+	<xacro:wall_part id="9"  w="0.2" h="${(height-w_s)/2}"	l="${w_s}" 		x="0" y="${ (2.5+w_s/2)}"	z="${ ((height-w_s)/4+w_s/2)}"/>
+	<xacro:wall_part id="10" w="0.2" h="${(height-w_s)/2}"	l="${w_s}" 		x="0" y="${-(2.5+w_s/2)}"	z="${ ((height-w_s)/4+w_s/2)}"/>
+	
+	<xacro:wall_part id="11" w="${l_p}" h="0.2"		l="${w_s+0.3998}" 		x="0" y="${ (2.5+w_s/2)}"		z="${-(w_s/2+0.099)}"/>
+	<xacro:wall_part id="12" w="${l_p}" h="0.2"		l="${w_s+0.3998}" 		x="0" y="${ (2.5+w_s/2)}"		z="${ (w_s/2+0.099)}"/>
+	<xacro:wall_part id="13" w="${l_p}" h="${w_s-0.001}"	l="0.2" 		x="0" y="${ (2.5+w_s/2)-(w_s/2)-0.099}"	z="0.0"/>
+	<xacro:wall_part id="14" w="${l_p}" h="${w_s-0.001}"	l="0.2" 		x="0" y="${ (2.5+w_s/2)+(w_s/2)+0.099}"	z="0.0"/>
       </link>
     </model>
     

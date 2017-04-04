@@ -25,7 +25,7 @@
     <xacro:zone name="obstacle" 	offset="${length1/2+length2/2}" 		width="${width}" length="${length2}" color="${188/255} ${53/255}  ${53/255}"/>
     <xacro:zone name="target" 		offset="${length1/2+length2+length3/2}" 	width="${width}" length="${length3}" color="${78/255}  ${83/255}  ${199/255}"/>
     
-    <xacro:wall_obstacle w_s="0.5" w_b="1" w_t="0.5" offset="${length1/4}" width="${width}" height="3"/>
+    <xacro:wall_obstacle w_s="1.0" w_b="1.5" w_t="1.0" l_p="2.0" offset="${length1/4}" width="${width}" height="3"/>
     
     <xacro:wall_brand w="${length1+length2+length3}" h="${3*3}"	l="0.2" x="${length1/2+length2/2}" y="${width*2}"	z="${3*3/2}"/>
     
