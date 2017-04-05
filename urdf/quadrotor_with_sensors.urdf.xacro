@@ -16,13 +16,14 @@
     <xacro:sonar_sensor name="sonar" parent="base_link" ros_topic="sonar_height" update_rate="10" min_range="0.01" max_range="3.0" field_of_view="${40*M_PI/180}" ray_count="3">
       <origin xyz="-0.15 0.0 0.0" rpy="0 ${90*M_PI/180} 0"/>
     </xacro:sonar_sensor>
-
+    
 
     <!-- Hokuyo UTM-30LX mounted upside down below the quadrotor body 
     <xacro:include filename="$(find imav_2017)/urdf/sensors/hokuyo_utm30lx.urdf.xacro" />
     <xacro:hokuyo_utm30lx name="laser0" parent="base_link" ros_topic="scan" update_rate="40" ray_count="1081" min_angle="135" max_angle="-135">
       <origin xyz="0.0 0.0 0.08" rpy="${M_PI} 0 0"/>
-    </xacro:hokuyo_utm30lx>-->
+    </xacro:hokuyo_utm30lx>
+    -->
     
     <!-- The following two cameras should be united to one! -->
     <!-- Forward facing camera -->
