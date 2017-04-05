@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 
 <robot xmlns:xacro="http://wiki.ros.org/xacro" >
-  
+    <!--
     <xacro:macro name="hokuyo_utm30lx" params="name parent *origin ros_topic update_rate ray_count min_angle max_angle">
       <joint name="${name}_joint" type="fixed">
 	<xacro:insert_block name="origin" />
@@ -25,7 +25,7 @@
 	  <origin xyz="0 0 -0.0115" rpy="0 0 0" />
           <geometry>
           <box size="0.058 0.058 0.087" />
-          <!--<mesh filename="package://hector_sensors_description/meshes/hokuyo_utm30lx/hokuyo_utm_30lx.stl"/>-->
+          <mesh filename="package://hector_sensors_description/meshes/hokuyo_utm30lx/hokuyo_utm_30lx.stl"/>
           
         </geometry>
 	</collision>
@@ -61,5 +61,26 @@
       
       
     </xacro:macro>
-  </robot>
+    -->
+    
+  <xacro:macro name="hokuyo" params="parent ros_topic update_rate ray_count min_angle max_angle">
+      <include>
+	<uri>model://hokuyo</uri>
+	<pose>0.2 0 0.2 0 0 0</pose>
+      </include>
+      <joint name="hokuyo_joint" type="revolute">
+	<child>hokuyo::link</child>
+	<parent>${parent}</parent>
+	<axis>
+	  <xyz>0 0 1</xyz>
+	  <limit>
+	    <upper>0</upper>
+	    <lower>0</lower>
+	  </limit>
+	</axis>
+      </joint>
+    </xacro:macro>
+    
+    
+</robot>
   
