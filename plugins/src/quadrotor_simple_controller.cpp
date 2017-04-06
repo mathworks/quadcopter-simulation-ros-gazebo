@@ -10,6 +10,7 @@ namespace gazebo {
 
 GazeboQuadrotorSimpleController::GazeboQuadrotorSimpleController()
 {
+  //not used
   navi_state = 3;
   
 }
@@ -244,14 +245,6 @@ void GazeboQuadrotorSimpleController::Update()
     velocity = link->GetWorldLinearVel();
   }
 
-//  static Time lastDebug;
-//  if ((world->GetSimTime() - lastDebug).Double() > 0.5) {
-//    ROS_DEBUG_STREAM_NAMED("quadrotor_simple_controller", "Velocity:         gazebo = [" << link->GetWorldLinearVel()   << "], state = [" << velocity << "]");
-//    ROS_DEBUG_STREAM_NAMED("quadrotor_simple_controller", "Acceleration:     gazebo = [" << link->GetWorldLinearAccel() << "], state = [" << acceleration << "]");
-//    ROS_DEBUG_STREAM_NAMED("quadrotor_simple_controller", "Angular Velocity: gazebo = [" << link->GetWorldAngularVel() << "], state = [" << angular_velocity << "]");
-//    lastDebug = world->GetSimTime();
-//  }
-
   // Get gravity
   math::Vector3 gravity_body = pose.rot.RotateVector(world->GetPhysicsEngine()->GetGravity());
   double gravity = gravity_body.GetLength();
@@ -277,36 +270,10 @@ void GazeboQuadrotorSimpleController::Update()
   if (max_force_ > 0.0 && force.z > max_force_) force.z = max_force_;
   if (force.z < 0.0) force.z = 0.0;
 
-//  static double lastDebugOutput = 0.0;
-//  if (last_time.Double() - lastDebugOutput > 0.1) {
-//    ROS_DEBUG_NAMED("quadrotor_simple_controller", "Velocity = [%g %g %g], Acceleration = [%g %g %g]", velocity.x, velocity.y, velocity.z, acceleration.x, acceleration.y, acceleration.z);
-//    ROS_DEBUG_NAMED("quadrotor_simple_controller", "Command: linear = [%g %g %g], angular = [%g %g %g], roll/pitch = [%g %g]", velocity_command_.linear.x, velocity_command_.linear.y, velocity_command_.linear.z, velocity_command_.angular.x*180/M_PI, velocity_command_.angular.y*180/M_PI, velocity_command_.angular.z*180/M_PI, roll_command*180/M_PI, pitch_command*180/M_PI);
-//    ROS_DEBUG_NAMED("quadrotor_simple_controller", "Mass: %g kg, Inertia: [%g %g %g], Load: %g g", mass, inertia.x, inertia.y, inertia.z, load_factor);
-//    ROS_DEBUG_NAMED("quadrotor_simple_controller", "Force: [%g %g %g], Torque: [%g %g %g]", force.x, force.y, force.z, torque.x, torque.y, torque.z);
-//    lastDebugOutput = last_time.Double();
-//  }
+
+  link->AddRelativeForce(force);
+  link->AddRelativeTorque(torque);
   
-  // process robot state information
-  if(navi_state == LANDED_MODEL)
-  {
-
-  }
-  else if((navi_state == FLYING_MODEL)||(navi_state == TO_FIX_POINT_MODEL))
-  {
-    link->AddRelativeForce(force);
-    link->AddRelativeTorque(torque);
-  }
-  else if(navi_state == TAKINGOFF_MODEL)
-  {
-    link->AddRelativeForce(force*1.5);
-    link->AddRelativeTorque(torque*1.5);
-  }
-  else if(navi_state == LANDING_MODEL)
-  {
-    link->AddRelativeForce(force*0.8);
-    link->AddRelativeTorque(torque*0.8);
-  }
-
   // save last time stamp
   last_time = sim_time;
 }

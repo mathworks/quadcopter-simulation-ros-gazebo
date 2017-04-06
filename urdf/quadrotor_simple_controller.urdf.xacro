@@ -6,8 +6,11 @@
 
   <xacro:macro name="quadrotor_controller">
     <gazebo>
-
+      <!--
       <plugin name="quadrotor_simple_controller" filename="libquadrotor_simple_controller.so">
+      -->
+      
+      <plugin name="quadrotor_simple_controller" filename="libgazebo_quadrotor_simple_controller.so">
         <alwaysOn>true</alwaysOn>
         <updateRate>0.0</updateRate>
         <bodyName>base_link</bodyName>
