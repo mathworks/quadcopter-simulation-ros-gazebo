@@ -6,7 +6,6 @@
 
   <xacro:macro name="quadrotor_controller">
     <gazebo>
-
       <plugin name="quadrotor_simple_controller" filename="libquadrotor_simple_controller.so">
         <alwaysOn>true</alwaysOn>
         <updateRate>0.0</updateRate>
@@ -30,16 +29,6 @@
         <motionSmallNoise>0.05</motionSmallNoise>
         <motionDriftNoise>0.03</motionDriftNoise>
         <motionDriftNoiseTime>5.0</motionDriftNoiseTime>
-      </plugin>
-
-      <plugin name="quadrotor_state_controller" filename="libquadrotor_state_controller.so">
-        <alwaysOn>true</alwaysOn>
-        <updateRate>0.0</updateRate>
-        <bodyName>base_link</bodyName>
-        <stateTopic>ground_truth/state</stateTopic>
-        <imuTopic>ardrone/imu</imuTopic>
-        <sonarTopic>sonar_height</sonarTopic>
-        <topicName>/cmd_vel</topicName>
       </plugin>
 
     </gazebo>

@@ -1,45 +1,3 @@
-//=================================================================================================
-// Copyright (c) 2012, Johannes Meyer, TU Darmstadt
-// All rights reserved.
-
-// Redistribution and use in source and binary forms, with or without
-// modification, are permitted provided that the following conditions are met:
-//     * Redistributions of source code must retain the above copyright
-//       notice, this list of conditions and the following disclaimer.
-//     * Redistributions in binary form must reproduce the above copyright
-//       notice, this list of conditions and the following disclaimer in the
-//       documentation and/or other materials provided with the distribution.
-//     * Neither the name of the Flight Systems and Automatic Control group,
-//       TU Darmstadt, nor the names of its contributors may be used to
-//       endorse or promote products derived from this software without
-//       specific prior written permission.
-
-// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
-// ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
-// WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-// DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER BE LIABLE FOR ANY
-// DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
-// (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
-// LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
-// ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
-// SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-//=================================================================================================
-/*
-* quadrotor motion controller:
-*
-* This software is a motion control gazebo plugin for the Ardrone simulator
-*
-* change:
-* 1. Noise is add to the callback function: VelocityCallback
-* 2. Create a subscriber for rostopic /ardrone/navdata
-* 3. An additional force and torque calculation is added base on the robot state information in /ardrone/navdata 
-*
-* Created on: Oct 22, 2012
-* Author: Hongrong huang
-*
-*
-*/
 #include <quadrotor_simple_controller.h>
 #include "sdf/sdf.hh"
 #include "gazebo/common/Events.hh"
@@ -52,6 +10,7 @@ namespace gazebo {
 
 GazeboQuadrotorSimpleController::GazeboQuadrotorSimpleController()
 {
+  //not used
   navi_state = 3;
   
 }
@@ -87,12 +46,6 @@ void GazeboQuadrotorSimpleController::Load(physics::ModelPtr _model, sdf::Elemen
     velocity_topic_ = _sdf->GetElement("topicName")->Get<std::string>("");
 
   
-  
-  if (!_sdf->HasElement("navdataTopic"))
-    navdata_topic_ = "/ardrone/navdata";
-  else
-    navdata_topic_ = _sdf->GetElement("navdataTopic")->Get<std::string>("");
-
   if (!_sdf->HasElement("imuTopic"))
     imu_topic_.clear();
   else
@@ -163,19 +116,7 @@ void GazeboQuadrotorSimpleController::Load(physics::ModelPtr _model, sdf::Elemen
       ros::VoidPtr(), &callback_queue_);
     velocity_subscriber_ = node_handle_->subscribe(ops);
   }
-/*
-  // subscribe command: navigation data
-  if (!navdata_topic_.empty())
-  {
-    ros::SubscribeOptions ops = ros::SubscribeOptions::create<ardrone_autonomy::Navdata>(
-      navdata_topic_, 1,
-      boost::bind(&GazeboQuadrotorSimpleController::NavdataCallback, this, _1),
-      ros::VoidPtr(), &callback_queue_);
-    navdata_subscriber_ = node_handle_->subscribe(ops);
-  }
-    //m_navdataPub = node_handle_->advertise< ardrone_autonomy::Navdata >( "/ardrone/navdata", 10 );
 
-*/
   // subscribe imu
   if (!imu_topic_.empty())
   {
@@ -304,14 +245,6 @@ void GazeboQuadrotorSimpleController::Update()
     velocity = link->GetWorldLinearVel();
   }
 
-//  static Time lastDebug;
-//  if ((world->GetSimTime() - lastDebug).Double() > 0.5) {
-//    ROS_DEBUG_STREAM_NAMED("quadrotor_simple_controller", "Velocity:         gazebo = [" << link->GetWorldLinearVel()   << "], state = [" << velocity << "]");
-//    ROS_DEBUG_STREAM_NAMED("quadrotor_simple_controller", "Acceleration:     gazebo = [" << link->GetWorldLinearAccel() << "], state = [" << acceleration << "]");
-//    ROS_DEBUG_STREAM_NAMED("quadrotor_simple_controller", "Angular Velocity: gazebo = [" << link->GetWorldAngularVel() << "], state = [" << angular_velocity << "]");
-//    lastDebug = world->GetSimTime();
-//  }
-
   // Get gravity
   math::Vector3 gravity_body = pose.rot.RotateVector(world->GetPhysicsEngine()->GetGravity());
   double gravity = gravity_body.GetLength();
@@ -337,36 +270,10 @@ void GazeboQuadrotorSimpleController::Update()
   if (max_force_ > 0.0 && force.z > max_force_) force.z = max_force_;
   if (force.z < 0.0) force.z = 0.0;
 
-//  static double lastDebugOutput = 0.0;
-//  if (last_time.Double() - lastDebugOutput > 0.1) {
-//    ROS_DEBUG_NAMED("quadrotor_simple_controller", "Velocity = [%g %g %g], Acceleration = [%g %g %g]", velocity.x, velocity.y, velocity.z, acceleration.x, acceleration.y, acceleration.z);
-//    ROS_DEBUG_NAMED("quadrotor_simple_controller", "Command: linear = [%g %g %g], angular = [%g %g %g], roll/pitch = [%g %g]", velocity_command_.linear.x, velocity_command_.linear.y, velocity_command_.linear.z, velocity_command_.angular.x*180/M_PI, velocity_command_.angular.y*180/M_PI, velocity_command_.angular.z*180/M_PI, roll_command*180/M_PI, pitch_command*180/M_PI);
-//    ROS_DEBUG_NAMED("quadrotor_simple_controller", "Mass: %g kg, Inertia: [%g %g %g], Load: %g g", mass, inertia.x, inertia.y, inertia.z, load_factor);
-//    ROS_DEBUG_NAMED("quadrotor_simple_controller", "Force: [%g %g %g], Torque: [%g %g %g]", force.x, force.y, force.z, torque.x, torque.y, torque.z);
-//    lastDebugOutput = last_time.Double();
-//  }
+
+  link->AddRelativeForce(force);
+  link->AddRelativeTorque(torque);
   
-  // process robot state information
-  if(navi_state == LANDED_MODEL)
-  {
-
-  }
-  else if((navi_state == FLYING_MODEL)||(navi_state == TO_FIX_POINT_MODEL))
-  {
-    link->AddRelativeForce(force);
-    link->AddRelativeTorque(torque);
-  }
-  else if(navi_state == TAKINGOFF_MODEL)
-  {
-    link->AddRelativeForce(force*1.5);
-    link->AddRelativeTorque(torque*1.5);
-  }
-  else if(navi_state == LANDING_MODEL)
-  {
-    link->AddRelativeForce(force*0.8);
-    link->AddRelativeTorque(torque*0.8);
-  }
-
   // save last time stamp
   last_time = sim_time;
 }

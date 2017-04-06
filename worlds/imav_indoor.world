@@ -579,7 +579,7 @@
           </geometry>
           <material>
             <script>
-              <uri>file:///home/vjankovi/catkin_ws/src/IMAV_2017_Virtual_Challenge/worlds/xacro/custom.material</uri>
+              <uri>file:///home/imav2017/catkin_ws/src/IMAV_2017_Virtual_Challenge/worlds/xacro/custom.material</uri>
               <name>MathWorks_branding</name>
             </script>
           </material>
@@ -635,7 +635,7 @@
             <pose>0 0 0 1.5708 0 0</pose>
             <geometry>
               <mesh>
-                <uri>file:///home/vjankovi/catkin_ws/src/IMAV_2017_Virtual_Challenge/worlds/xacro/tree1.dae</uri>
+                <uri>file:///home/imav2017/catkin_ws/src/IMAV_2017_Virtual_Challenge/worlds/xacro/tree1.dae</uri>
                 <scale>0.01 0.01 0.01</scale>
               </mesh>
             </geometry>
@@ -682,7 +682,7 @@
           </geometry>
           <material>
             <script>
-              <uri>file:///home/vjankovi/catkin_ws/src/IMAV_2017_Virtual_Challenge/worlds/xacro/custom.material</uri>
+              <uri>file:///home/imav2017/catkin_ws/src/IMAV_2017_Virtual_Challenge/worlds/xacro/custom.material</uri>
               <name>Helipad</name>
             </script>
           </material>
@@ -775,7 +775,7 @@
           </geometry>
           <material>
             <script>
-              <uri>file:///home/vjankovi/catkin_ws/src/IMAV_2017_Virtual_Challenge/worlds/xacro/custom.material</uri>
+              <uri>file:///home/imav2017/catkin_ws/src/IMAV_2017_Virtual_Challenge/worlds/xacro/custom.material</uri>
               <name>Helipad</name>
             </script>
           </material>
@@ -809,7 +809,7 @@
           </geometry>
           <material>
             <script>
-              <uri>file:///home/vjankovi/catkin_ws/src/IMAV_2017_Virtual_Challenge/worlds/xacro/custom.material</uri>
+              <uri>file:///home/imav2017/catkin_ws/src/IMAV_2017_Virtual_Challenge/worlds/xacro/custom.material</uri>
               <name>QR1</name>
             </script>
           </material>
@@ -843,7 +843,7 @@
           </geometry>
           <material>
             <script>
-              <uri>file:///home/vjankovi/catkin_ws/src/IMAV_2017_Virtual_Challenge/worlds/xacro/custom.material</uri>
+              <uri>file:///home/imav2017/catkin_ws/src/IMAV_2017_Virtual_Challenge/worlds/xacro/custom.material</uri>
               <name>X1</name>
             </script>
           </material>

@@ -8,10 +8,10 @@
   </include>
 
 
-  <!-- Spawn simulated quadrotor uav -->
+  <!-- Spawn simulated quadrotor uav 
   <include file="$(find imav_2017)/launch/spawn_quadrotor.launch" >
     <arg name="model" default="$(find imav_2017)/urdf/quadrotor_with_sensors.urdf.xacro"/>
   </include>
-   
+   -->
    
 </launch>
