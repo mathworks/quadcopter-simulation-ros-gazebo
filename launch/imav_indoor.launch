@@ -3,6 +3,13 @@
   
   
   <!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched -->
+  
+  <!--
+  Create the world from xacro
+  -->
+  <node name="create_world" pkg="xacro" type="xacro"
+   args="--inorder '$(find imav_2017)/worlds/xacro/imav_indoor.world.xacro' -o '$(find imav_2017)/worlds/imav_indoor.world'" respawn="false" output="screen"/>
+  
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
     <arg name="world_name" value="$(find imav_2017)/worlds/imav_indoor.world"/>
   </include>
