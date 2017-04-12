@@ -9,7 +9,7 @@
       <plugin name="quadrotor_simple_controller" filename="libquadrotor_simple_controller.so">
         <alwaysOn>true</alwaysOn>
         <updateRate>0.0</updateRate>
-        <bodyName>base_link</bodyName>
+	<!--<bodyName>base_link</bodyName>-->
         <!--<stateTopic>ground_truth/state</stateTopic>-->
         <!--<imuTopic>ardrone/imu</imuTopic>-->
         <topicName>/${robot_name}/cmd_vel</topicName>
