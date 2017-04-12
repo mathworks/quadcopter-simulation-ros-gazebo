@@ -19,7 +19,7 @@
 
     
     <xacro:include filename="$(find imav_2017)/urdf/quadrotor_simple_controller.urdf.xacro" />
-    <quadrotor_controller/> 
+    <quadrotor_controller robot_name="${robot_name}"/> 
     
     <!-- Sonar height sensor -->
     

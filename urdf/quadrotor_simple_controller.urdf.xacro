@@ -4,7 +4,7 @@
 
   <!-- Quadrotor Simple Controller Plugin -->
 
-  <xacro:macro name="quadrotor_controller">
+  <xacro:macro name="quadrotor_controller" params="robot_name">
     <gazebo>
       <plugin name="quadrotor_simple_controller" filename="libquadrotor_simple_controller.so">
         <alwaysOn>true</alwaysOn>
@@ -12,7 +12,7 @@
         <bodyName>base_link</bodyName>
         <!--<stateTopic>ground_truth/state</stateTopic>-->
         <!--<imuTopic>ardrone/imu</imuTopic>-->
-        <topicName>/cmd_vel</topicName>
+        <topicName>/${robot_name}/cmd_vel</topicName>
         <rollpitchProportionalGain>10.0</rollpitchProportionalGain>
         <rollpitchDifferentialGain>5.0</rollpitchDifferentialGain>
         <rollpitchLimit>0.5</rollpitchLimit>

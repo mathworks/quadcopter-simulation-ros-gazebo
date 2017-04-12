@@ -39,7 +39,7 @@
       <updateRate>100.0</updateRate>
       <bodyName>base_link</bodyName>
       <frameId>ardrone_base_link</frameId>
-      <topicName>/quadrotor_2/imu</topicName>
+      <topicName>/quadrotor_1/imu</topicName>
       <rpyOffsets>0 0 0</rpyOffsets>
       <!-- deprecated -->
       <gaussianNoise>0</gaussianNoise>
@@ -55,7 +55,7 @@
       <alwaysOn>true</alwaysOn>
       <updateRate>10.0</updateRate>
       <bodyName>base_link</bodyName>
-      <topicName>/quadrotor_2/pressure_height</topicName>
+      <topicName>/quadrotor_1/pressure_height</topicName>
       <altimeterTopicName>altimeter</altimeterTopicName>
       <offset>0</offset>
       <drift>0.1</drift>
@@ -65,7 +65,7 @@
       <alwaysOn>true</alwaysOn>
       <updateRate>10.0</updateRate>
       <bodyName>base_link</bodyName>
-      <topicName>/quadrotor_2/magnetic</topicName>
+      <topicName>/quadrotor_1/magnetic</topicName>
       <offset>0 0 0</offset>
       <drift>0.0 0.0 0.0</drift>
       <gaussianNoise>1.3e-2 1.3e-2 1.3e-2</gaussianNoise>
@@ -74,8 +74,8 @@
       <alwaysOn>true</alwaysOn>
       <updateRate>4.0</updateRate>
       <bodyName>base_link</bodyName>
-      <topicName>/quadrotor_2/fix</topicName>
-      <velocityTopicName>/quadrotor_2/fix_velocity</velocityTopicName>
+      <topicName>/quadrotor_1/fix</topicName>
+      <velocityTopicName>/quadrotor_1/fix_velocity</velocityTopicName>
       <drift>5.0 5.0 5.0</drift>
       <gaussianNoise>0.1 0.1 0.1</gaussianNoise>
       <velocityDrift>0 0 0</velocityDrift>
@@ -85,7 +85,7 @@
       <alwaysOn>true</alwaysOn>
       <updateRate>100.0</updateRate>
       <bodyName>base_link</bodyName>
-      <topicName>/quadrotor_2/ground_truth/state</topicName>
+      <topicName>/quadrotor_1/ground_truth/state</topicName>
       <gaussianNoise>0.0</gaussianNoise>
       <frameName>map</frameName>
     </plugin>
@@ -98,7 +98,7 @@
       <bodyName>base_link</bodyName>
       <!--<stateTopic>ground_truth/state</stateTopic>-->
       <!--<imuTopic>ardrone/imu</imuTopic>-->
-      <topicName>/cmd_vel</topicName>
+      <topicName>/quadrotor_1/cmd_vel</topicName>
       <rollpitchProportionalGain>10.0</rollpitchProportionalGain>
       <rollpitchDifferentialGain>5.0</rollpitchDifferentialGain>
       <rollpitchLimit>0.5</rollpitchLimit>
@@ -167,7 +167,7 @@
       </ray>
       <plugin filename="libhector_gazebo_ros_sonar.so" name="gazebo_ros_sonar_controller">
         <gaussianNoise>0.000</gaussianNoise>
-        <topicName>/quadrotor_2/sonar_height</topicName>
+        <topicName>/quadrotor_1/sonar_height</topicName>
         <frameId>sonar_link</frameId>
       </plugin>
     </sensor>
@@ -222,7 +222,7 @@
         <gaussianNoise>0.005</gaussianNoise>
         <alwaysOn>true</alwaysOn>
         <updateRate>40</updateRate>
-        <topicName>/quadrotor_2/scan</topicName>
+        <topicName>/quadrotor_1/scan</topicName>
         <frameName>laser0_frame</frameName>
       </plugin>
     </sensor>
@@ -298,11 +298,11 @@
         </clip>
       </camera>
       <plugin filename="libgazebo_ros_camera.so" name="front_camera_controller">
-        <cameraName>/quadrotor_2/front</cameraName>
+        <cameraName>/quadrotor_1/front</cameraName>
         <alwaysOn>true</alwaysOn>
         <updateRate>60</updateRate>
-        <imageTopicName>/quadrotor_2/front/image_raw</imageTopicName>
-        <cameraInfoTopicName>/quadrotor_2/front/camera_info</cameraInfoTopicName>
+        <imageTopicName>/quadrotor_1/front/image_raw</imageTopicName>
+        <cameraInfoTopicName>/quadrotor_1/front/camera_info</cameraInfoTopicName>
         <frameName>ardrone_base_frontcam</frameName>
       </plugin>
     </sensor>
@@ -379,11 +379,11 @@
         </clip>
       </camera>
       <plugin filename="libgazebo_ros_camera.so" name="bottom_camera_controller">
-        <cameraName>/quadrotor_2/bottom</cameraName>
+        <cameraName>/quadrotor_1/bottom</cameraName>
         <alwaysOn>true</alwaysOn>
         <updateRate>60</updateRate>
-        <imageTopicName>/quadrotor_2/bottom/image_raw</imageTopicName>
-        <cameraInfoTopicName>/quadrotor_2/bottom/camera_info</cameraInfoTopicName>
+        <imageTopicName>/quadrotor_1/bottom/image_raw</imageTopicName>
+        <cameraInfoTopicName>/quadrotor_1/bottom/camera_info</cameraInfoTopicName>
         <frameName>ardrone_base_bottomcam</frameName>
       </plugin>
     </sensor>

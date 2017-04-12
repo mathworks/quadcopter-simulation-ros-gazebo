@@ -19,13 +19,13 @@ class ps_forward:
 		#print(command)
 		self.pub.publish(command)
     
-	def __init__(self,scaling):
+	def __init__(self,id):
 
 		rospy.init_node('ps_forward', anonymous=True)
 
-		self.scaling = float(scaling)
+		self.scaling = 10
 		rospy.Subscriber("joy", Joy, self.callback)
-		self.pub = rospy.Publisher('cmd_vel', Twist, queue_size=10)
+		self.pub = rospy.Publisher('/quadrotor_' + id + '/cmd_vel', Twist, queue_size=10)
 
 		rospy.spin()
 
