@@ -15,7 +15,8 @@
         <bodyName>base_link</bodyName>
         <frameId>ardrone_base_link</frameId>
         <topicName>/${robot_name}/imu</topicName>
-        <rpyOffsets>0 0 0</rpyOffsets> <!-- deprecated -->
+        <xyzOffset>0 0 0</xyzOffset>
+	<rpyOffset>0 0 0</rpyOffset>
         <gaussianNoise>0</gaussianNoise>  <!-- deprecated -->
         <accelDrift>0.5 0.5 0.5</accelDrift>
         <accelGaussianNoise>0.35 0.35 0.3</accelGaussianNoise>
