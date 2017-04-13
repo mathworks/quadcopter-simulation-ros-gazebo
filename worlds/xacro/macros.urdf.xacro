@@ -295,7 +295,7 @@
     </link>
   </xacro:macro>
   
-  <xacro:macro name="poles2" params="h r w l x y num">
+  <xacro:macro name="poles2" params="h r w l x y num dist">
     <population name="pole_population">
       <model name="pole">
 	<xacro:pole2 h="${h}" r="${r}"/>
@@ -307,7 +307,7 @@
       </box>
       <model_count>${num}</model_count>
       <distribution>
-        <type>random</type>
+        <type>${dist}</type>
       </distribution>
     </population>
   </xacro:macro>
@@ -342,7 +342,7 @@
 
   </xacro:macro>
   
-  <xacro:macro name="trees" params="w l x y num">
+  <xacro:macro name="trees" params="w l x y num dist">
     
     <population name="tree_population">
       <model name="tree">
@@ -378,7 +378,7 @@
       </box>
       <model_count>${num}</model_count>
       <distribution>
-        <type>random</type>
+        <type>${dist}</type>
       </distribution>
     </population>
       
