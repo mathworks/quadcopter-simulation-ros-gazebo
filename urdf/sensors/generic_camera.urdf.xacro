@@ -80,6 +80,7 @@
 	    </clip>
 	  </camera>
 	  <plugin name="${name}_camera_controller" filename="libgazebo_ros_camera.so">
+	    <robotNamespace>${robot_name}</robotNamespace>
 	    <cameraName>/${robot_name}/${name}</cameraName>
 	    <alwaysOn>true</alwaysOn>
 	    <updateRate>${update_rate}</updateRate>

@@ -12,6 +12,7 @@
 	<!--<bodyName>base_link</bodyName>-->
         <!--<stateTopic>ground_truth/state</stateTopic>-->
         <!--<imuTopic>ardrone/imu</imuTopic>-->
+	<robotNamespace>${robot_name}</robotNamespace>
         <topicName>/${robot_name}/cmd_vel</topicName>
         <rollpitchProportionalGain>10.0</rollpitchProportionalGain>
         <rollpitchDifferentialGain>5.0</rollpitchDifferentialGain>
