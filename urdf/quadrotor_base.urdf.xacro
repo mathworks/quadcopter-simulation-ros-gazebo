@@ -1,13 +1,6 @@
 <?xml version="1.0"?>
 
 <robot xmlns:xacro="http://wiki.ros.org/xacro" >
-<!--
-  <xacro:include filename="$(find imav_2017)/plugins/urdf/quadrotor_plugins.urdf.xacro" />
-  -->
-<!--
-  <xacro:property name="pi" value="3.1415926535897931" />
--->
-
   
   <!-- Main quadrotor link -->
   <xacro:macro name="quadrotor_base_macro"> 
@@ -34,8 +27,5 @@
         </geometry>
       </collision>
     </link>
-<!--
-    <quadrotor_plugins/>
-    -->
   </xacro:macro>
 </robot>

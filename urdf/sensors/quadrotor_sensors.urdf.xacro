@@ -2,11 +2,6 @@
 
 <robot xmlns:xacro="http://wiki.ros.org/xacro" >
 
-  <!-- Quadrotor Sensor Plugins 
-
-        <frameId>ardrone_base_link</frameId>
-
--->
   <xacro:macro name="quadrotor_sensors" params="robot_name">
     <gazebo>
       <plugin name="quadrotor_imu_sim" filename="libhector_gazebo_ros_imu.so">
