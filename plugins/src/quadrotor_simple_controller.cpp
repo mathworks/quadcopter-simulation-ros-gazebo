@@ -10,9 +10,7 @@ namespace gazebo {
 
 GazeboQuadrotorSimpleController::GazeboQuadrotorSimpleController()
 {
-  //not used
-  navi_state = 3;
-  
+
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -186,8 +184,6 @@ void GazeboQuadrotorSimpleController::VelocityCallback(const geometry_msgs::Twis
   velocity_command_.linear.z += drift_noise[2] + 2*motion_small_noise_*(drand48()-0.5);
   velocity_command_.angular.z += drift_noise[3] + 2*motion_small_noise_*(drand48()-0.5);
 
-//  velocity_command_.angular.z *= 2;
-
 }
 
 void GazeboQuadrotorSimpleController::ImuCallback(const sensor_msgs::ImuConstPtr& imu)
@@ -357,12 +353,7 @@ void GazeboQuadrotorSimpleController::PIDController::reset()
   input = dinput = 0;
   p = i = d = output = 0;
 }
-/*
-void GazeboQuadrotorSimpleController::NavdataCallback(const ardrone_autonomy::NavdataConstPtr& msg)
-{
-  navi_state = msg -> state;
-}
-*/
+
 // Register this plugin with the simulator
 GZ_REGISTER_MODEL_PLUGIN(GazeboQuadrotorSimpleController)
 
