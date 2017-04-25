@@ -44,7 +44,7 @@ cd ~/catkin_ws/src/IMAV_2017_Virtual_Challenge/world/xacro
 rosrun xacro xacro --inorder imav_indoor.world.xacro > ../imav_indoor.world 
 
 
+echo 'export GAZEBO_PLUGIN_PATH=${GAZEBO_PLUGIN_PATH}:~/catkin_ws/src/IMAV_2017_Virtual_Challenge/plugins/build' >> ~/.bashrc
 
-echo "export GAZEBO_PLUGIN_PATH=${GAZEBO_PLUGIN_PATH}:~/catkin_ws/src/IMAV_2017_Virtual_Challenge/plugins/build" >> ~/.bashrc
 
 
