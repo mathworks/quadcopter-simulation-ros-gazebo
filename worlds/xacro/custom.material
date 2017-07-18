@@ -67,7 +67,7 @@ material QR1
 
       texture_unit
       {
-	texture QR1.jpg
+	texture qrcode_text.png
 	filtering trilinear
       }
     }
