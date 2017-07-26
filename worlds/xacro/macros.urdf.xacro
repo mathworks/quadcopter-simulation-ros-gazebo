@@ -203,6 +203,47 @@
 	<xacro:wall_part id="14" w="${l_p}" h="${w_s-0.001}"	l="0.2" 		x="0" y="${ (2.5+w_s/2)+(w_s/2)+0.099}"	z="0.0"/>
       </link>
     </model>
+
+  </xacro:macro>
+
+  <xacro:macro name="wall_obstacle2" params="x y">
+
+    <model name="wall2">
+      <static>1</static>
+      <pose>${x} ${y} 0 0 0 -1.5708</pose>
+        <link name="wall2_link">
+        <inertial>
+          <mass>10000</mass>
+        </inertial>
+
+          <visual name="visual">
+            <pose>0 0 0 0 0 0</pose>
+            <geometry>
+              <mesh>
+                <uri>file://$(find imav_2017)/worlds/xacro/wall.dae</uri>
+                <scale>0.1 0.1 0.1</scale>
+              </mesh>
+            </geometry>
+            <material>
+              <script>
+                <name>Gazebo/Wood</name>
+              </script>
+            </material>
+          </visual>
+
+          <collision name="collision">
+            <pose>0 0 0 0 0 0</pose>
+            <geometry>
+              <mesh>
+                <uri>file://$(find imav_2017)/worlds/xacro/wall.dae</uri>
+                <scale>0.1 0.1 0.1</scale>
+              </mesh>
+            </geometry>
+          </collision>
+
+        </link>
+    </model>
+
     
   </xacro:macro>
  
