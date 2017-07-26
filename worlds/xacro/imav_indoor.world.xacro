@@ -38,7 +38,7 @@
     <xacro:helipad_mobile size="1 1 0.01" x="-2.5" y="-2.5" z="0.1" r="1" v="1"/>
     
     <xacro:QR1 size="0.5 0.5 0.01" x="${length1/2+length2+length3/2}" 	y="${width/4}"  z="0.1"/>
-    <xacro:X1 size="2 2 0.01" x="${length1/2+length2+length3/2}" 	y="${-width/4}"  z="0.1"/>
+    <!--xacro:X1 size="2 2 0.01" x="${length1/2+length2+length3/2}" 	y="${-width/4}"  z="0.1"/-->
 
   </world>
 </sdf>
