@@ -19,6 +19,7 @@ cd ~/catkin_ws/
 catkin_make
 
 echo "source ~/catkin_ws/devel/setup.bash" >> ~/.bashrc
+source ~/.bashrc
 
 sudo apt install ros-kinetic-joy -y
 sudo apt install ros-kinetic-image-view -y
@@ -32,7 +33,7 @@ sudo apt install ros-kinetic-gazebo-ros-pkgs ros-kinetic-gazebo-ros-control
 sudo apt install ros-kinetic-hector-gazebo-plugins ros-kinetic-hector-sensors-description ros-kinetic-hector-gazebo
 
 cd ~/catkin_ws/src/IMAV_2017_Virtual_Challenge/plugins
-mkdir build
+mkdir -p build
 cd build
 cmake ..
 make
@@ -40,8 +41,8 @@ make
 cd ~/catkin_ws/
 catkin_make
 
-cd ~/catkin_ws/src/IMAV_2017_Virtual_Challenge/world/xacro
-rosrun xacro xacro --inorder imav_indoor.world.xacro > ../imav_indoor.world 
+cd ~/catkin_ws/src/IMAV_2017_Virtual_Challenge/worlds/xacro
+rosrun xacro xacro --inorder imav_indoor.world.xacro > ~/catkin_ws/src/IMAV_2017_Virtual_Challenge/worlds/imav_indoor.world 
 
 
 
