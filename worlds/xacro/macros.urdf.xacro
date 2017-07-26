@@ -383,24 +383,44 @@
     </population>
       
   </xacro:macro>
-  
-  <xacro:macro name="bushes" params="w l x y">
-    
-    <population name="pole_population">
-      <model name="pole">
-	<include>
-          <static>true</static>
-          <uri>model://meshes/bush.dae</uri>
-        </include>
+
+  <xacro:macro name="bushes" params="w l x y num dist">
+
+    <population name="bush_population">
+      <model name="bush">
+
+        <static>true</static>
+        <link name="body">
+          <visual name="visual">
+            <pose>0 0 0 1.5708 0 0</pose>
+            <geometry>
+              <mesh>
+                <uri>file://$(find imav_2017)/worlds/xacro/tree1.dae</uri>
+                <scale>0.01 0.004 0.01</scale>
+              </mesh>
+            </geometry>
+          </visual>
+
+          <collision name="collision">
+            <pose>0 0 0 1.5708 0 0</pose>
+            <geometry>
+              <mesh>
+                <uri>file://$(find imav_2017)/worlds/xacro/tree1.dae</uri>
+                <scale>0.01 0.004 0.01</scale>
+              </mesh>
+            </geometry>
+          </collision>
+
+        </link>
       </model>
-      
-      <pose>${x} ${y} 0 0 0 0</pose>
+
+      <pose>${x} ${y} -0.5 0 0 0</pose>
       <box>
         <size>${l} ${w} 0.1</size>
       </box>
-      <model_count>10</model_count>
+      <model_count>${num}</model_count>
       <distribution>
-        <type>uniform</type>
+        <type>${dist}</type>
       </distribution>
     </population>
       

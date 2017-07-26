@@ -31,6 +31,7 @@
     
     <xacro:poles2 h="3" r="0.25" 	w="${width*3/4}" l="${length2/2}" x="${length1/2+length2/4}"   y="${width/8}" num="10" dist="uniform"/>
     <xacro:trees  			w="${width*3/4}" l="${length2/2}" x="${length1/2+3*length2/4}" y="${width/8}" num="10" dist="uniform"/>
+    <xacro:bushes  			w="${width*3/4}" l="${length2/2}" x="${length1/2+3*length2/4}" y="${width/8}" num="6" dist="uniform"/>
     
     <xacro:helipad_static size="1 1 0.01" x="-2.5"  y="2.5"  z="0.1"/>
     <xacro:helipad_mobile size="1 1 0.01" x="-2.5" y="-2.5" z="0.1" r="1" v="1"/>
