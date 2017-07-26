@@ -10,7 +10,8 @@
     <xacro:property name="length2" value="10" />
     <xacro:property name="length3" value="13" />
 
-    <xacro:include filename="$(find imav_2017)/worlds/xacro/macros.urdf.xacro" />
+    <!--xacro:include filename="$(find imav_2017)/worlds/xacro/macros.urdf.xacro" /-->
+    <xacro:include filename="macros.urdf.xacro" />
 
     
     <xacro:light_source/>
