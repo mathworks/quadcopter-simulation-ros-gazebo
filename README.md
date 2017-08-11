@@ -21,6 +21,3 @@ Quick install and run process (using bash, if you use a different shell you may 
 
 Once ROS/gazebo simulation is running, you can use Simulink or your own system to control the UAV
 
-
-Changelog:
-  - v1.0 (June 26): first release, environment not matching exactly the indoor mission yet
