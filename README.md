@@ -23,12 +23,17 @@ For the moment, these models control the drone with ID 1, but you can change the
 
 To connect Simulink with the ROS server, follow these steps: 
 
- 1. Open Simulink
- 2. In the Tools menu, navigate to Robotics Operating System, and click on Configure Network Addresses
- 3. In ROS Master Node, set Network Address to Custom
- 4. In ROS Master Node, fill the Hostname/IP Address field with the IP of your virtual machine
- 5. In ROS Master Node, let the Port field with the default port ROS is running on (11311)
- 6. Test the connectivity using the Test button
+ 1. In MATLAB, execute the `rosinit` function with the IP of the virtual machine
+ 2. In Simulink, navigate to Tools > Robotics Operating System > Configure Network Addresses
+ 3. In ROS Master, make sure Network Address is set to Default
+ 4. In Node Host, make sure Network Address is set to Default
+ 5. Test the connectivity using the Test button
+ 
+Refer to the following links for more information:
+
+ - [Connect to a ROS Network](https://www.mathworks.com/help/robotics/examples/connect-to-a-ros-network.html)
+ - [Simulink and ROS Interaction](https://www.mathworks.com/help/robotics/ug/simulink-and-ros-interaction.html)
+ - [Configure ROS Network Addresses](https://www.mathworks.com/help/robotics/ug/configure-ros-network-addresses.html)
 
 ## Notes ##
 
