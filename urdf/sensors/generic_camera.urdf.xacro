@@ -84,8 +84,8 @@
 	    <cameraName>${name}</cameraName>
 	    <alwaysOn>true</alwaysOn>
 	    <updateRate>${update_rate}</updateRate>
-	    <imageTopicName>${name}/image_raw</imageTopicName>
-	    <cameraInfoTopicName>${name}/camera_info</cameraInfoTopicName>
+	    <imageTopicName>image_raw</imageTopicName>
+	    <cameraInfoTopicName>camera_info</cameraInfoTopicName>
 	    <frameName>ardrone_base_${name}cam</frameName>
 	  </plugin>
 	</sensor>
