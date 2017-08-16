@@ -36,6 +36,25 @@ material MathWorks_branding_transp
   }
 }
 
+material imav_branding
+{
+  technique
+  {
+    pass
+    {
+      ambient 1.0 1.0 1.0 0.0
+      diffuse 1.0 1.0 1.0 1.0
+      specular 0.0 0.0 0.0 1.0 0.5
+
+      texture_unit
+      {
+	texture imav2017_logo_cfp.png
+	filtering trilinear
+      }
+    }
+  }
+}
+
 material Helipad
 {
   technique
