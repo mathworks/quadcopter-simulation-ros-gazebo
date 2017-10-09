@@ -1,0 +1,5 @@
+*/build/*
+worlds/imav_indoor.world
+urdf/qws.urdf
+*.swp
+*~

@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<launch>
+  
+  
+  <!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched -->
+  
+  <!--
+  Create the world from xacro
+  -->
+  <node name="create_world" pkg="xacro" type="xacro"
+   args="--inorder '$(find imav_2017)/worlds/xacro/imav_indoor.world.xacro' -o '$(find imav_2017)/worlds/imav_indoor.world'" respawn="false" output="screen"/>
+  
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find imav_2017)/worlds/imav_indoor.world"/>
+  </include>
+
+
+  <!-- Spawn simulated quadrotor uav 
+  <include file="$(find imav_2017)/launch/spawn_quadrotor.launch" >
+    <arg name="model" default="$(find imav_2017)/urdf/quadrotor_with_sensors.urdf.xacro"/>
+  </include>
+   -->
+   
+</launch>
